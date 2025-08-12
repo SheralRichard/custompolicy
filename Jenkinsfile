@@ -28,15 +28,15 @@ pipeline {
     }
 
     stage('Publish SonarQube Results') {
-      steps {
-        script {
-          timeout(time: 5, unit: 'MINUTES') {
-            // Set abortPipeline: true to fail the build if the Quality Gate is Red
-            waitForQualityGate abortPipeline: false
-          }
-        }
+  steps {
+    script {
+      timeout(time: 15, unit: 'MINUTES') {
+        // fail build if gate is Red? set abortPipeline: true
+        waitForQualityGate abortPipeline: false
       }
     }
+  }
+}
 
     stage('Login to Azure') {
       steps {
